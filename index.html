@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weldon Tan - AI & Data Science Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #1a1d24; /* Darker blue-ish black */
+            --primary-blue: #007bff; /* Vibrant blue */
+            --secondary-blue: #0056b3; /* Darker blue for hover */
+            --text-color: #f0f0f0;
+            --card-bg: #2a2d34; /* Slightly lighter than main bg */
+            --border-color: #3a3d44;
+            --success-color: #2ecc71; /* Green for success messages */
+            --error-color: #e74c3c; /* Red for error messages */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky; /* Make header sticky */
+            top: 0;
+            background-color: var(--bg-color); /* Add background to sticky header */
+            z-index: 1000; /* Ensure header is above other content */
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none; /* If logo is a link */
+        }
+
+        .logo span {
+            color: var(--text-color);
+        }
+
+        .nav-contact-btn {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-contact-btn:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh; /* Adjusted for potentially sticky header */
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 80px 0 50px; /* Add top padding if header is sticky */
+        }
+
+        .hero-content {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary-blue);
+        }
+
+        .hero .typing-text {
+            font-size: 1.8em;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 25px;
+            min-height: 1.3em; /* To prevent layout shift */
+        }
+        
+        .hero p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #b0b0b0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none; /* For button elements */
+            cursor: pointer; /* For button elements */
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            font-weight: 700;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-blue);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Expertise Section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .expertise-item {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .expertise-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.1);
+        }
+
+        .expertise-item i {
+            font-size: 2.5em;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .expertise-item h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .expertise-item p {
+            font-size: 0.95em;
+            color: #b0b0b0;
+        }
+
+        /* Portfolio Section */
+        .portfolio-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .portfolio-item {
+            background-color: var(--card-bg);
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.08);
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .portfolio-item p {
+            font-size: 1em;
+            color: #b0b0b0;
+        }
+        
+        /* Contact Section & Form Styles */
+        .contact-section {
+            text-align: center;
+        }
+        .contact-section .intro-text { /* Class for the intro paragraph */
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #b0b0b0;
+        }
+
+        #contact-form {
+            max-width: 600px;
+            margin: 30px auto;
+            text-align: left; /* Align labels and inputs to the left */
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px; /* Increased spacing */
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px; /* Increased padding */
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg); /* Slightly lighter than page bg */
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2); /* Focus ring */
+        }
+        #contact-form .cta-button { /* Style for the submit button */
+            display: block;
+            width: 100%;
+            margin-top: 10px; /* Spacing above button */
+        }
+        #form-status {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            display: none; /* Hidden by default */
+            border-width: 1px;
+            border-style: solid;
+        }
+        #form-status.success {
+            background-color: rgba(46, 204, 113, 0.1); /* Light green background */
+            color: var(--success-color);
+            border-color: var(--success-color);
+            display: block;
+        }
+        #form-status.error {
+            background-color: rgba(231, 76, 60, 0.1); /* Light red background */
+            color: var(--error-color);
+            border-color: var(--error-color);
+            display: block;
+        }
+
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero .typing-text {
+                font-size: 1.5em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 1.8em;
+            }
+            .expertise-grid {
+                grid-template-columns: 1fr; /* Stack items on smaller screens */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#home" class="logo">Weldon<span>Tan</span></a> <!-- Made logo a link to top -->
+            <a href="#contact" class="nav-contact-btn">Let's Talk AI</a>
+        </div>
+    </header>
+
+    <section class="hero" id="home"> <!-- Added id for logo link -->
+        <div class="container hero-content">
+            <h1>Weldon Tan: Your Partner in <span class="highlight">AI Innovation</span></h1>
+            <div class="typing-text" id="typing-text-element"></div>
+            <p>I translate complex AI capabilities into tangible business value, specializing in Generative AI, Machine Learning, and scalable data solutions for finance and beyond. Ready to elevate your operations?</p>
+            <a href="#contact" class="cta-button">Discuss Your AI Project</a>
+        </div>
+    </section>
+
+    <section id="expertise" class="section">
+        <div class="container">
+            <h2 class="section-title">My Core AI Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-item">
+                    <i class="fas fa-brain"></i>
+                    <h3>Generative AI & LLMs</h3>
+                    <p>Building intelligent chatbots, content generation tools, and custom LLM applications with RAG and fine-tuning.</p>
+                </div>
+                <div class="expertise-item">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Machine Learning Solutions</h3>
+                    <p>Developing predictive models, OCR pipelines, and computer vision systems for enhanced accuracy and efficiency.</p>
+                </div>
+                <div class="expertise-item">
+                    <i class="fas fa-server"></i>
+                    <h3>Scalable AI Architecture</h3>
+                    <p>Designing robust microservices, CI/CD pipelines, and cloud-native AI systems for high performance and reliability.</p>
+                </div>
+                <div class="expertise-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Data Analysis & Insights</h3>
+                    <p>Transforming raw data into actionable intelligence to drive strategic decision-making and uncover opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2 class="section-title">AI Solutions I Deliver</h2>
+            <ul class="portfolio-list">
+                <li class="portfolio-item">
+                    <h3>AI Marketing Automation Software</h3>
+                    <p>Boost engagement & ROI with intelligent campaign optimization and personalized customer journeys.</p>
+                </li>
+                <li class="portfolio-item">
+                    <h3>Custom Auction Platform (Twilio Integration)</h3>
+                    <p>Real-time bidding, secure transactions, and seamless communication for dynamic auction experiences.</p>
+                </li>
+                <li class="portfolio-item">
+                    <h3>AI Energy Software Suite</h3>
+                    <p>Optimize energy consumption, predict demand, and improve grid stability with advanced ML models.</p>
+                </li>
+                <li class="portfolio-item">
+                    <h3>AI Mortgage Assistant & OCR</h3>
+                    <p>Streamline loan origination, automate document processing (LOS), and provide instant support for borrowers.</p>
+                </li>
+                <li class="portfolio-item">
+                    <h3>AI-Powered Listing Crawling & Analysis</h3>
+                    <p>Automate data extraction and insight generation from diverse online sources at scale.</p>
+                </li>
+                <li class="portfolio-item">
+                    <h3>AI-Powered Fraud Detection System</h3>
+                    <p>Proactively identify and mitigate financial fraud with advanced anomaly detection and real-time alerts.</p>
+                </li>
+                <li class="portfolio-item">
+                    <h3>Automated Loan Origination & Underwriting</h3>
+                    <p>Accelerate loan processing with AI-driven document analysis, risk assessment, and decision support.</p>
+                </li>
+                <li class="portfolio-item">
+                    <h3>Intelligent Investment Portfolio Recommender</h3>
+                    <p>Personalized investment strategies and insights powered by data-driven AI market analysis.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Ready to Build Your AI Future?</h2>
+            <p class="intro-text">Let's transform your challenges into AI-powered opportunities. Fill out the form below to get in touch.</p>
+
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Project Idea / Question:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Send Inquiry</button>
+            </form>
+            <div id="form-status"></div> <!-- For displaying success/error messages -->
+
+            <!-- Removed the Calendly/scheduling link paragraph -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear"></span> Weldon Tan. Architecting Intelligent Solutions.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- START: CONFIGURATION FOR GOOGLE APPS SCRIPT ---
+        // This URL is provided by you and should be correct.
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyncPGghuag7YIRA95gbmS1lon0i2nIZQxQvOz6Vy1T3SliR-fvQHUcYAIz-Ysbxxyl_A/exec"; 
+        // --- END: CONFIGURATION ---
+
+        // Typing animation
+        const typingTextElement = document.getElementById('typing-text-element');
+        const textsToType = [
+            "AI-Powered OCR Pipelines.",
+            "Generative AI Chatbots.",
+            "Scalable Microservices.",
+            "Data-Driven Insights.",
+            "Financial AI Solutions."
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            if (!typingTextElement) return; 
+            const currentText = textsToType[textIndex];
+            if (isDeleting) {
+                typingTextElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingTextElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(type, 2000); 
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % textsToType.length;
+                setTimeout(type, 500); 
+            } else {
+                const typingSpeed = isDeleting ? 50 : 100;
+                setTimeout(type, typingSpeed);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typingTextElement) {
+                 setTimeout(type, 500); 
+            }
+
+            // Scroll animations for sections
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                root: null, 
+                rootMargin: '0px',
+                threshold: 0.1 
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            // Update year in footer
+            const currentYearElement = document.getElementById('currentYear');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+
+            // Contact Form Submission
+            const contactForm = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+
+            if (contactForm && formStatus) { 
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.textContent;
+                    
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
+                    formStatus.style.display = 'none'; 
+                    formStatus.className = ''; // Reset classes
+
+                    const formData = new FormData(this);
+
+                    // Check if SCRIPT_URL is configured (it is, directly in this version)
+                    if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE")) { // Defensive check
+                        console.error("CRITICAL: SCRIPT_URL is not configured correctly. Form submission will fail.");
+                        formStatus.textContent = 'Form submission is not configured. Please contact the site administrator.';
+                        formStatus.className = 'error';
+                        formStatus.style.display = 'block';
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalButtonText;
+                        return; // Stop submission
+                    }
+
+                    fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) { 
+                            return response.json().catch(() => ({ result: "error", message: `Server responded with status ${response.status}` })).then(errData => Promise.reject(errData));
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.result === "success") {
+                            formStatus.textContent = data.message || 'Message sent successfully! I will get back to you soon.';
+                            formStatus.className = 'success'; 
+                            contactForm.reset();
+                        } else {
+                            formStatus.textContent = 'Error: ' + (data.message || 'Could not send message. Please try again.');
+                            formStatus.className = 'error';
+                        }
+                    })
+                    .catch(error => { 
+                        console.error('Form Submission Error:', error);
+                        let errorMessage = 'An error occurred while sending your message. Please try again.';
+                        if (error && error.message) {
+                            errorMessage = `Error: ${error.message}`;
+                        }
+                        formStatus.textContent = errorMessage;
+                        formStatus.className = 'error';
+                    })
+                    .finally(() => {
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalButtonText;
+                        formStatus.style.display = 'block'; 
+                        setTimeout(() => {
+                            if (formStatus.style.display === 'block') { 
+                                 formStatus.style.display = 'none';
+                            }
+                        }, 7000); 
+                    });
+                });
+            } else {
+                if (!contactForm) console.error("Contact form element with ID 'contact-form' not found!");
+                if (!formStatus) console.error("Form status element with ID 'form-status' not found!");
+            }
+        });
+    </script>
+</body>
+</html>
